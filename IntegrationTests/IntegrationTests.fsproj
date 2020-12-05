@@ -7,6 +7,10 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='All|AnyCPU'">
+    <NoWarn>FS0988</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FsUnit" Version="4.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
