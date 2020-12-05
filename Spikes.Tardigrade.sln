@@ -5,14 +5,15 @@ VisualStudioVersion = 16.0.30709.64
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Tardigrade.Client", "Tardigrade.Client\Tardigrade.Client.fsproj", "{D43B4DA4-E3BC-433C-A4AB-AF0E7A1541F7}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UnitTests", "UnitTests\UnitTests.fsproj", "{4EA44AB7-BF39-4097-8DF6-60DF403CFCAC}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "UnitTests", "UnitTests\UnitTests.fsproj", "{4EA44AB7-BF39-4097-8DF6-60DF403CFCAC}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "IntegrationTests", "IntegrationTests\IntegrationTests.fsproj", "{7BA6FC14-49AA-4FF4-BACC-6335A476AE12}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "IntegrationTests", "IntegrationTests\IntegrationTests.fsproj", "{7BA6FC14-49AA-4FF4-BACC-6335A476AE12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{981C4AE0-819E-4DCA-9B6C-F49BB837A840}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F2D238B-BF94-4D17-A866-CED77D8F880F}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
