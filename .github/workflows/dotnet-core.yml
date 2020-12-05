@@ -20,6 +20,8 @@ jobs:
     - name: test secret
       run: |
         echo start here
+        dotnet user-secrets list
+        echo API ${{ secrets.KEY_NAME }}
         echo end here
     - name: Install dependencies
       run: dotnet restore
