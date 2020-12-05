@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:  
-  VERSION: 0.1.${{GITHUB_RUN_NUMBER}}
+  VERSION: 0.1.${{github.run_number}}
   PROJECT_FILE: "Tardigrade.Client/Tardigrade.Client.fsproj"
 
 jobs:
