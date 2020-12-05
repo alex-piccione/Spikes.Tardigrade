@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: test secret
-      run: > 
+      run: |
         echo start here
         echo end here
     - name: Install dependencies
