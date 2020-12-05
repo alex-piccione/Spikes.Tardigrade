@@ -28,3 +28,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+
+    - name: pack
+      with: 
+        PROJECT_FILE: "Tardigrade.Client/Tardigrade.Client.fsproj"
+        VERSION: 0.1
+      run: | 
+        echo version = ${{ VERSION }}
+        dotnet pack ${{ PROJECT_FILE }} --configuration Release --no-build -p:PackageVersion=${{ VERSION }}
