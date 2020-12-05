@@ -12,13 +12,15 @@ type Client(satelliteUrl:string, apiName:string, apiKey:string) =
 
     member this.ReadFile(bucket:string, fileName:string):byte[] =
 
-        use access = new Models.Access(satelliteUrl, apiName, apiKey)
+        use access = new Models.Access(satelliteUrl, apiKey, apiName)
         //let bucket_ = BucketService(access).GetBucketAsync(bucket).Result
         let bucket_ = BucketService(access).EnsureBucketAsync(bucket).Result
         let service = ObjectService(access)
         let object_ = service.GetObjectAsync(bucket_, fileName).Result
         //object_.SystemMetaData.ContentLength
         use download = service.DownloadObjectAsync(bucket_, fileName, Models.DownloadOptions(), true).Result
+        while not(download.Completed) do 
+            Thread.Sleep 100
         download.DownloadedBytes
 
     member this.WriteFile(bucket:string, fileName:string, content:byte[]) =
@@ -28,8 +30,8 @@ type Client(satelliteUrl:string, apiName:string, apiKey:string) =
         //let bucket_ = getBucket access bucket_ BucketService(access).GetBucketAsync(bucket).Result
         let service = ObjectService(access)
 
-        let operation = service.UploadObjectAsync(bucket_, fileName, Models.UploadOptions(), content, true).Result
-        while not(operation.Completed) do 
+        let upload = service.UploadObjectAsync(bucket_, fileName, Models.UploadOptions(), content, true).Result
+        while not(upload.Completed) do 
             Thread.Sleep 100
 
         //let tot= operation.BytesSent

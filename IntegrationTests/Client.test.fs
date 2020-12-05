@@ -4,8 +4,22 @@ open System
 open System.IO
 open Microsoft.Extensions.Configuration
 open NUnit.Framework
+open FsUnit
 
 open Alex75.Tardigrade
+
+let areEqual a b = //(a:byte[], b:byte[]) = // a b = 
+    match (a:byte array).Length = (b:byte array).Length with
+    | false -> false
+    | true ->
+        let rec check aa bb i =
+            if i = a.Length-1 then true
+            else
+                match a.[i] = b.[i] with 
+                | false -> false
+                | true -> check aa bb (i+1)
+        check a b 0
+
 
 
 type ClientTest () =
@@ -16,28 +30,26 @@ type ClientTest () =
     
 
     let bucket = "test"
-    let deleteLocalFile file = File.Delete(file)
+
+    let deleteFile fileName =
+        () // not implemented
 
     [<Test>]
-    member this.``WriteFile``() =
-        let fileName = sprintf "test_%d.txt" (DateTime.Now.Ticks)
-        let file = sprintf "C:/temp/test_%d.txt" (DateTime.Now.Ticks)
+    member this.``Write and Read File``() =
+        let fileName = sprintf "test_%d.bin" (DateTime.Now.Ticks)
         try
-            let content = "aaa"
-            use writer = File.CreateText(file)
-            writer.Write(content)
-            writer.Flush()
-            writer.Dispose()
+            let client = Client(Satellites.EuropeWest_1, apiName, apiKey)             
+            let data = Array.create 10 (byte(1))
 
-            let client = Client(Satellites.EuropeWest_1, apiName, apiKey)            
-            //let data = System.Text.Encoding.UTF8.GetBytes(content)
-
-            let data = Array.zeroCreate<byte>(1024*1024)
-            // execute
+            // write
             client.WriteFile(bucket, fileName, data)
 
-            ()
+            // read
+            let readedData = client.ReadFile(bucket, fileName)
+
+            areEqual data readedData |> should be True
 
         finally
-            deleteLocalFile file
+            //deleteLocalFile file
+            deleteFile fileName
 
