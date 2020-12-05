@@ -25,8 +25,8 @@ let areEqual a b = //(a:byte[], b:byte[]) = // a b =
 type ClientTest () =
 
     let apiKey = ConfigurationBuilder().AddUserSecrets("edb9da2d-7ae6-44f7-ab56-d14dab8a4657").Build();
-    let apiName = apiKey.["API name"]
-    let apiKey = apiKey.["API key"]
+    let keyName = apiKey.["API name"]
+    let keySecret = apiKey.["API secret"]
     
 
     let bucket = "test"
@@ -38,7 +38,7 @@ type ClientTest () =
     member this.``Write and Read File``() =
         let fileName = sprintf "test_%d.bin" (DateTime.Now.Ticks)
         try
-            let client = Client(Satellites.EuropeWest_1, apiName, apiKey)             
+            let client = Client(Satellites.EuropeWest_1, keyName, keySecret)             
             let data = Array.create 10 (byte(1))
 
             // write
