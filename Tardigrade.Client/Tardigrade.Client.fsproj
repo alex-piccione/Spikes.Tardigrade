@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <ProjectType>Library</ProjectType>
     <UserSecretsId>edb9da2d-7ae6-44f7-ab56-d14dab8a4657</UserSecretsId>
+    <Version>0.0.1</Version>
+    <PackageId>Alex75.Tardigrade.Client</PackageId>
+    <RepositoryUrl>https://github.com/alex75it/Spikes.Tardigrade</RepositoryUrl>
+    <Copyright>Alessandro Piccione 2020</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
