@@ -35,5 +35,5 @@ jobs:
 
     - name: pack
       run: | 
-        echo version = ${{ VERSION }}
+        echo create package $VERSION
         dotnet pack $PROJECT_FILE --configuration Release --no-build -p:PackageVersion=$VERSION
