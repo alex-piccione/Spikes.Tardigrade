@@ -20,6 +20,7 @@ jobs:
     - name: test secret
       run: |
         echo start here
+        ls -al
         dotnet user-secrets list
         echo API ${{ secrets.KEY_NAME }}
         echo end here
