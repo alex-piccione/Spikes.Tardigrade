@@ -4,6 +4,7 @@ Test Tardigrade with .Net
 
 It uses https://github.com/alex75it/uplink.net
 
+[![NuGet](https://img.shields.io/nuget/v/Alex75.Tardigrade.Client.svg)](https://www.nuget.org/packages/Alex75.Tardigrade.Client)
 ![Build](https://github.com/alex75it/Spikes.Tardigrade/workflows/Build/badge.svg)
 
 (Dec 2020) There is no official .Net support and the documentation for the non-official library is wrong or old.  

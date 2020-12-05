@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:  
-  VERSION: 0.1.${{github.run_number}}
+  VERSION: 0.1.${{github.run_number}}   # https://api.nuget.org/v3-flatcontainer/Alex75.Tardigrade.Client
   PROJECT_FOLDER: Tardigrade.Client
   NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
 
@@ -34,9 +34,9 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
-    - name: Pack
+    - name: Pack NuGet
       run: | 
         echo create package $VERSION
         dotnet pack $PROJECT_FOLDER --configuration Release --no-build -p:PackageVersion=$VERSION
-    - name: Publish
+    - name: Publish NuGet
       run: dotnet nuget push $PROJECT_FOLDER/bin/Release/*.nupkg  --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
