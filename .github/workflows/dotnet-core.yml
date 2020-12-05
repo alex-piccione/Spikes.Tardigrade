@@ -22,8 +22,8 @@ jobs:
         echo start here
         ls -al
         dotnet user-secrets list --id ${{ secrets.USER_SECRETS_ID }}
-        dotnet user-secrets --id ${{ USER_SECRETS_ID }} set "API name" ${{ secrets.KEY_NAME }}
-        dotnet user-secrets --id ${{ USER_SECRETS_ID }} set "API secret" ${{ secrets.KEY_SECRET }}
+        dotnet user-secrets --id ${{ secrets.USER_SECRETS_ID }} set "API name" ${{ secrets.KEY_NAME }}
+        dotnet user-secrets --id ${{ secrets.USER_SECRETS_ID }} set "API secret" ${{ secrets.KEY_SECRET }}
         dotnet user-secrets "API name" ${{ secrets.KEY_NAME }}
         echo end here
     - name: Install dependencies
