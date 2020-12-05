@@ -26,30 +26,44 @@ type ClientTest () =
 
     let apiKey = ConfigurationBuilder().AddUserSecrets("edb9da2d-7ae6-44f7-ab56-d14dab8a4657").Build();
     let keyName = apiKey.["API name"]
-    let keySecret = apiKey.["API secret"]
-    
-
+    let keySecret = apiKey.["API secret"]    
     let bucket = "test"
 
-    let deleteFile fileName =
-        () // not implemented
 
     [<Test>]
     member this.``Write and Read File``() =
         let fileName = sprintf "test_%d.bin" (DateTime.Now.Ticks)
-        try
-            let client = Client(Satellites.EuropeWest_1, keyName, keySecret)             
-            let data = Array.create 10 (byte(1))
 
-            // write
-            client.WriteFile(bucket, fileName, data)
+        let client = Client(Satellites.EuropeWest_1, keyName, keySecret)             
+        let data = Array.create 10 (byte(1))
 
-            // read
-            let readedData = client.ReadFile(bucket, fileName)
+        // write
+        client.WriteFile(bucket, fileName, data)
 
-            areEqual data readedData |> should be True
+        // read
+        let readedData = client.ReadFile(bucket, fileName)
 
-        finally
-            //deleteLocalFile file
-            deleteFile fileName
+        areEqual data readedData |> should be True
+
+
+    [<Test>]
+    member this.``Write and Delete``() =
+        let fileName = sprintf "test_%d.bin" (DateTime.Now.Ticks)
+
+        let client = Client(Satellites.EuropeWest_1, keyName, keySecret)             
+        let data = Array.create 10 (byte(1))
+
+        // write
+        client.WriteFile(bucket, fileName, data)
+
+        // delete
+        client.DeleteFile(bucket, fileName)
+
+        //(fun () -> client.ReadFile(bucket, fileName) |> ignore) |> should throw //(typeof<Exception>)
+        try                 
+            client.ReadFile(bucket, fileName) |> ignore
+        with exc ->
+            exc.ToString() |> should contain (sprintf "uplink: object not found (\"%s\")" fileName)          
+
+            
 
