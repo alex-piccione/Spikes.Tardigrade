@@ -9,6 +9,7 @@ on:
 env:  
   VERSION: 0.1.${{github.run_number}}
   PROJECT_FILE: "Tardigrade.Client/Tardigrade.Client.fsproj"
+  PROJECT_FOLDER: "Tardigrade.Client"
 
 jobs:
   build:
@@ -33,7 +34,9 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
-    - name: pack
+    - name: Pack
       run: | 
         echo create package $VERSION
-        dotnet pack $PROJECT_FILE --configuration Release --no-build -p:PackageVersion=$VERSION
+        dotnet pack $PROJECT_FOLDER --configuration Release --no-build -p:PackageVersion=$VERSION
+    - name: Publish
+      run: dotnet nuget push $PROJECT_FOLDER/bin/Release/*.nupkg  --api-key "${{ NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json
