@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Alex75.Tardigrade.Client.jpg">
+    <Content Include="Alex75.Tardigrade.Client.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
