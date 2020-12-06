@@ -6,7 +6,8 @@
     <UserSecretsId>edb9da2d-7ae6-44f7-ab56-d14dab8a4657</UserSecretsId>
     <Version>0.1.0</Version>
     <PackageId>Alex75.Tardigrade.Client</PackageId>
-    <PackageIconUrl>Alex75.Tardigrade.Client.jpg</PackageIconUrl>
+    <PackageIcon>Alex75.Tardigrade.Client.jpg</PackageIcon>
+    <PackageIconUrl/>
     <RepositoryUrl>https://github.com/alex75it/Spikes.Tardigrade</RepositoryUrl>
     <Copyright>Alessandro Piccione 2020</Copyright>
   </PropertyGroup>
@@ -17,7 +18,8 @@
 
   <ItemGroup>
     <None Include="Alex75.Tardigrade.Client.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 
